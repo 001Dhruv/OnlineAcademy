@@ -20,20 +20,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="20sp"
         android:layout_marginTop="24sp"
+        android:textColor="@color/black"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_email"
         android:background="@drawable/et_style"
-        android:padding="4sp"
+        android:paddingHorizontal="8sp"
+        android:paddingVertical="8sp"
+        android:id="@+id/emailEditText"
+        android:textColor="@color/black"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -41,26 +46,40 @@
         android:text="@string/password"
         android:textSize="20sp"
         android:layout_marginTop="24sp"
-        android:background="@drawable/et_style"
+        android:textColor="@color/black"
+
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_password"
+        android:background="@drawable/et_style"
+
+        android:paddingHorizontal="8sp"
+        android:paddingVertical="8sp"
         android:inputType="textPassword"
+        android:id="@+id/passwordEditText"
         />
+    <CheckBox
+        android:id="@+id/togglePasswordCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Password"
+
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
-        android:textSize="@dimen/forgot_txt"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/primary_button"
-        android:layout_marginTop="24sp"
+        android:layout_marginTop="4sp"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="12sp"
         android:text="Log In"
         android:textStyle="bold"
 

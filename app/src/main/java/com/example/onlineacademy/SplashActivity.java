@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 
+import com.example.onlineacademy.Homeactivity.Homeactivity;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -21,13 +23,13 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 if(preferences.getBoolean("isloggedin",false)){
                     //To HOME Activity
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, Homeactivity.class);
                     startActivity(intent);
                     finish();
                 }
                 else{
                     //To Login Page
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, Homeactivity.class);
                     startActivity(intent);
                     finish();
                 }

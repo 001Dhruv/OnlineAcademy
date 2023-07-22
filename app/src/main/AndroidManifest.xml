@@ -11,6 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineAcademy"
         tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".Homeactivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".Homeactivity.Homeactivity"
+            android:exported="false"
+            android:label="@string/title_activity_homeactivity"
+            android:theme="@style/Theme.OnlineAcademy" />
+<!--        <activity-->
+<!--            android:name=".Homeactivity.homeactivity"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_homeactivity" />-->
         <activity
             android:name=".ForgetPasswordActivity"
             android:exported="false" />

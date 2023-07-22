@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".LoginActivity"
-    android:layout_gravity="center_vertical"
+    android:layout_gravity="center"
     android:orientation="vertical"
     android:padding="24sp">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,20 +29,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/email"
         android:textSize="20sp"
         android:layout_marginTop="24sp"
         android:textColor="@color/black"
         />
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48sp"
         android:hint="@string/enter_your_email"
         android:background="@drawable/et_style"
         android:paddingHorizontal="8sp"
         android:paddingVertical="8sp"
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailEditTextLogin"
         android:textColor="@color/black"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -51,21 +57,23 @@
         />
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48sp"
         android:hint="@string/enter_your_password"
         android:background="@drawable/et_style"
 
         android:paddingHorizontal="8sp"
         android:paddingVertical="8sp"
         android:inputType="textPassword"
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordEditTextLogin"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
         />
     <CheckBox
-        android:id="@+id/togglePasswordCheckBox"
+        android:id="@+id/togglePasswordCheckBoxLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show Password"
-
+        android:layout_margin="2sp"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="wrap_content"
@@ -75,14 +83,39 @@
         android:textStyle="bold"
         android:textColor="@color/primary_button"
         android:layout_marginTop="4sp"
+        android:clickable="true"
+        android:id="@+id/forgotPasswordTextViewLogin"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12sp"
-        android:text="Log In"
+        android:text="@string/login"
         android:textStyle="bold"
-
+        android:id="@+id/loginButtonLogin"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dont_t_have_account"
+        android:textColor="@color/black"
+        />
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:textColor="@color/primary_button"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:id="@+id/signupTextViewLogin"
         />
 
+    </LinearLayout>
+
+
 </LinearLayout>
+    </ScrollView>

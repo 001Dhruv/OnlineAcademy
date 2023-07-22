@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The shape with the stroke (your existing shape) -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2sp"
+                android:color="#EF5050" />
+            <corners android:radius="4sp" />
+        </shape>
+    </item>
+
+    <!-- Add the shadow here -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#30F07F7F" /> <!-- Change the shadow color and alpha here -->
+            <corners android:radius="4sp" />
+        </shape>
+    </item>
+</layer-list>

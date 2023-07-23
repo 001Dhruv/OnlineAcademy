@@ -31,4 +31,7 @@
     <string name="title_Live">Live</string>
     <string name="navigation_drawer_open" />
     <string name="navigation_drawer_close">\n</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="receipts">Receipts</string>
+    <string name="contact_us">Contact us</string>
 </resources>

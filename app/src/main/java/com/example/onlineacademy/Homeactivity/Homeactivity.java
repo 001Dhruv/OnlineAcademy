@@ -42,7 +42,39 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.slider_home:
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.flFragment, home)
+                                .commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
 
+
+                    case R.id.slider_logout:
+//                        logout code here
+                        return true;
+                    case R.id.slider_profile:
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.flFragment, profile)
+                                .commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.slider_receipt:
+//                        receipt code here
+                        return true;
+
+
+                }
+
+                return false;
+            }
+        });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -86,9 +118,11 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
                         .commit();
                 return true;
 
+
         }
             return false;
             }
+
     public void onBackPressed(){
 
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){

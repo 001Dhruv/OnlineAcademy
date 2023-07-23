@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/slider_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_explore"
-        android:icon="@drawable/explore"
-        android:title="@string/title_explore" />
-    <item
-        android:id="@+id/navigation_Live"
-        android:icon="@drawable/signal_stream"
-        android:title="@string/title_Live" />
-
-    <item
-        android:id="@+id/navigation_Profile"
+        android:id="@+id/slider_profile"
         android:icon="@drawable/profile_icon"
-        android:title="@string/title_Profile" />
+        android:title="@string/edit_profile" />
+    <item
+        android:id="@+id/slider_receipt"
+        android:icon="@drawable/payment_receipt"
+        android:title="@string/receipts" />
+    <item
+        android:id="@+id/slider_contact_us"
+        android:icon="@drawable/ic_phone"
+        android:title="@string/contact_us" />
+    <item
+        android:id="@+id/slider_logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
 </menu>

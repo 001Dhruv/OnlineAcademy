@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,9 +24,10 @@ import com.google.android.material.navigation.NavigationView;
 public class Homeactivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle actionBarDrawerToggle;
-    private ActionBarDrawerToggle drawerToggle;
+//    NavigationView navigationView;
+//    ActionBarDrawerToggle actionBarDrawerToggle;
+//    private ActionBarDrawerToggle drawerToggle;
+    Boolean flag=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_homeactivity);
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.navbar);
+//        navigationView = findViewById(R.id.navbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.onlineacademy);
 
@@ -42,43 +45,37 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.slider_home:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.flFragment, home)
-                                .commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
-
-
-                    case R.id.slider_logout:
-//                        logout code here
-                        return true;
-                    case R.id.slider_profile:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.flFragment, profile)
-                                .commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
-                    case R.id.slider_receipt:
-//                        receipt code here
-                        return true;
-
-
-                }
-
-                return false;
-            }
-        });
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
-                (this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.slider_home:
+//                        loadFragment(new Home());
+//                        drawerLayout.closeDrawer(GravityCompat.START);
+//                        return true;
+//
+//
+//                    case R.id.slider_logout:
+////                        logout code here
+//                        return true;
+//                    case R.id.slider_profile:
+//                        loadFragment(new profile());
+//                        drawerLayout.closeDrawer(GravityCompat.START);
+//                        return true;
+//                    case R.id.slider_receipt:
+////                        receipt code here
+//                        return true;
+//
+//
+//                }
+//
+//                return false;
+//            }
+//        });
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
+//                (this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawerLayout.addDrawerListener(toggle);
+//        toggle.syncState();
 
 
     }
@@ -93,29 +90,17 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, home)
-                        .commit();
+                loadFragment(new Home());
                 return true;
 
                 case R.id.navigation_explore:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, explore)
-                        .commit();
+                loadFragment(new Explore());
                 return true;
             case R.id.navigation_Live:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, live_class)
-                        .commit();
+                loadFragment(new Live_Classes());
                 return true;
                 case R.id.navigation_Profile:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, profile)
-                        .commit();
+                loadFragment(new profile());
                 return true;
 
 
@@ -124,15 +109,65 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
             }
 
     public void onBackPressed(){
-
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
-            getSupportFragmentManager().popBackStack();
-        }
-        else{
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+//        updateBottomNavigationBar();
 
     }
+    public  void loadFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        if(flag) {
+            //solves problem of onBackPressed for Fragment
+            //Add the fragment to Stack
+            flag=false;
+
+            fm.beginTransaction().replace(R.id.flFragment, fragment).commit();
+        }
+        else{
+
+            fm.beginTransaction().replace(R.id.flFragment, fragment).addToBackStack(null).commit();
+        }
+//        updateBottomNavigationBar();
+    }
+    private void updateBottomNavigationBar() {
+        System.out.println("Update called");
+        // Get the BottomNavigationView reference
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        // Get the currently selected menu item (fragment)
+        int selectedItemId = bottomNavigationView.getSelectedItemId();
+        System.out.println("Selected ITEM ID got");
+        // Loop through each menu item and set the appropriate icon color
+        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+            MenuItem item = bottomNavigationView.getMenu().getItem(i);
+            boolean isSelected = item.getItemId() == selectedItemId;
+            System.out.println("Ready to set color");
+            item.setIcon(getIconResourceByItemId(item.getItemId()));
+            System.out.println("Color set");
+        }
+    }
+
+    private int getIconResourceByItemId(int itemId) {
+        // Implement a method to map the menu item IDs to their respective icons with the given color
+        // For example, if you're using a switch-case statement, you can do something like this:
+        switch (itemId) {
+            case R.id.navigation_home:
+                return itemId == getSelectedItemId() ? R.drawable.home_selected: R.drawable.ic_home_black_24dp;
+            case R.id.navigation_Live:
+                return itemId == getSelectedItemId() ? R.drawable.signal_stream_selected : R.drawable.signal_stream;
+            case R.id.navigation_explore:
+                return itemId == getSelectedItemId() ? R.drawable.explore_selected : R.drawable.explore;
+            case R.id.navigation_Profile:
+                return itemId == getSelectedItemId() ? R.drawable.profile_icon_selected : R.drawable.profile_icon;
+            default:
+                return R.drawable.baseline_person_24;
+        }
+    }
+
+    private int getSelectedItemId() {
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        return bottomNavigationView.getSelectedItemId();
+    }
+
+
+
 }

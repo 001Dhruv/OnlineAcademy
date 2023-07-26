@@ -5,15 +5,16 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_Live"
+        android:icon="@drawable/signal_stream"
+        android:title="@string/title_Live" />
 
     <item
         android:id="@+id/navigation_explore"
         android:icon="@drawable/explore"
         android:title="@string/title_explore" />
-    <item
-        android:id="@+id/navigation_Live"
-        android:icon="@drawable/signal_stream"
-        android:title="@string/title_Live" />
+
 
     <item
         android:id="@+id/navigation_Profile"

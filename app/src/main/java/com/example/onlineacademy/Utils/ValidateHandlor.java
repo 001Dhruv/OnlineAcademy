@@ -1,4 +1,4 @@
-package com.example.onlineacademy;
+package com.example.onlineacademy.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

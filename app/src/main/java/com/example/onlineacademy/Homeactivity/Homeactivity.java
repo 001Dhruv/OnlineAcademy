@@ -24,68 +24,35 @@ import com.google.android.material.navigation.NavigationView;
 public class Homeactivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
-//    NavigationView navigationView;
-//    ActionBarDrawerToggle actionBarDrawerToggle;
-//    private ActionBarDrawerToggle drawerToggle;
+    Toolbar toolbar;
     Boolean flag=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homeactivity);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        drawerLayout = findViewById(R.id.drawerLayout);
-//        navigationView = findViewById(R.id.navbar);
+        UIInit();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.onlineacademy);
-
-
-
-        bottomNavigationView= findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.slider_home:
-//                        loadFragment(new Home());
-//                        drawerLayout.closeDrawer(GravityCompat.START);
-//                        return true;
-//
-//
-//                    case R.id.slider_logout:
-////                        logout code here
-//                        return true;
-//                    case R.id.slider_profile:
-//                        loadFragment(new profile());
-//                        drawerLayout.closeDrawer(GravityCompat.START);
-//                        return true;
-//                    case R.id.slider_receipt:
-////                        receipt code here
-//                        return true;
-//
-//
-//                }
-//
-//                return false;
-//            }
-//        });
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
-//                (this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-
 
     }
+
+    private void UIInit() {
+        toolbar= findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        bottomNavigationView= findViewById(R.id.bottomNavigationView);
+    }
+
+
+
 
     final Fragment home = new Home();
     final Fragment profile = new profile();
     final Fragment explore= new Explore();
     final Fragment live_class= new Live_Classes();
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -102,16 +69,13 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
                 case R.id.navigation_Profile:
                 loadFragment(new profile());
                 return true;
-
-
         }
             return false;
             }
 
     public void onBackPressed(){
         super.onBackPressed();
-//        updateBottomNavigationBar();
-
+        updateBottomNavigationBar();
     }
     public  void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
@@ -126,7 +90,7 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
 
             fm.beginTransaction().replace(R.id.flFragment, fragment).addToBackStack(null).commit();
         }
-//        updateBottomNavigationBar();
+        updateBottomNavigationBar();
     }
     private void updateBottomNavigationBar() {
         System.out.println("Update called");
@@ -161,7 +125,6 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
                 return R.drawable.baseline_person_24;
         }
     }
-
     private int getSelectedItemId() {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);

@@ -1,10 +1,10 @@
-package com.example.onlineacademy;
+package com.example.onlineacademy.Homeactivity.Models;
 
 public class HomeFragmentModel {
-    String img;
-    String title;
-    String desc;
-    String  prog;
+    public String img;
+    public String title;
+    public String desc;
+    public String  prog;
 
 
     public HomeFragmentModel(String img, String title, String desc) {

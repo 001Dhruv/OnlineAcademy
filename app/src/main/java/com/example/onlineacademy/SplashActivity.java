@@ -23,13 +23,13 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 if(preferences.getBoolean("isloggedin",false)){
                     //To HOME Activity
-                    Intent intent = new Intent(SplashActivity.this, Homeactivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
                 else{
                     //To Login Page
-                    Intent intent = new Intent(SplashActivity.this, Homeactivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }

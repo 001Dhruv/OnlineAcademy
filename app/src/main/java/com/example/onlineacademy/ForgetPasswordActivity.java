@@ -11,21 +11,27 @@ import android.widget.EditText;
 public class ForgetPasswordActivity extends AppCompatActivity {
    private EditText email;
    private Button getpass;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        email=findViewById(R.id.emailEditTextForotPassword);
-        getpass=findViewById(R.id.getpasswordButtonForgotPassword);
+        UIInit();
         getpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendPasswordOnMail();
-                Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                getPassClick();
             }
         });
 
+    }
+    private void getPassClick() {
+        sendPasswordOnMail();
+        Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+    }
+
+    private void UIInit() {
+        email=findViewById(R.id.emailEditTextForotPassword);
+        getpass=findViewById(R.id.getpasswordButtonForgotPassword);
     }
     void sendPasswordOnMail(){
 

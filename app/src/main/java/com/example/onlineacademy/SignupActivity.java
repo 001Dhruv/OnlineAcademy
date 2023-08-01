@@ -14,6 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.onlineacademy.Utils.ValidateHandlor;
+
 public class SignupActivity extends AppCompatActivity {
     private CheckBox togglePasswordCheckBox;
     private EditText nameEditText;
@@ -29,15 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        togglePasswordCheckBox=findViewById(R.id.togglePasswordCheckBoxSignup);
-        nameEditText=findViewById(R.id.nameEditTextSignup);
-        standardEditText=findViewById(R.id.standardEditTextSignup);
-        contactEditText=findViewById(R.id.contactEditTextSignup);
-        emailEditText=findViewById(R.id.emailEditTextSignup);
-        passwordEditText=findViewById(R.id.passwordEditTextSignup);
-        conformPasswordEditText=findViewById(R.id.conformPasswordEditTextSignup);
-        signup=findViewById(R.id.signUpButtonSignup);
-        login=findViewById(R.id.loginTextViewSignUp);
+        UIInit();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +45,6 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         togglePasswordCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -59,6 +52,17 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void UIInit() {
+        togglePasswordCheckBox=findViewById(R.id.togglePasswordCheckBoxSignup);
+        nameEditText=findViewById(R.id.nameEditTextSignup);
+        standardEditText=findViewById(R.id.standardEditTextSignup);
+        contactEditText=findViewById(R.id.contactEditTextSignup);
+        emailEditText=findViewById(R.id.emailEditTextSignup);
+        passwordEditText=findViewById(R.id.passwordEditTextSignup);
+        conformPasswordEditText=findViewById(R.id.conformPasswordEditTextSignup);
+        signup=findViewById(R.id.signUpButtonSignup);
+        login=findViewById(R.id.loginTextViewSignUp);
     }
 
     private void togglePasswordVisibility(boolean isChecked) {

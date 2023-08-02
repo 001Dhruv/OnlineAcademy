@@ -159,10 +159,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void validate(){
-        if(!ValidateHandlor.isValidEmail(emailEditText.getText().toString())){
+        if(!ValidateHandlor.isValidEmail(emailEditText.getText().toString().trim())){
             emailEditText.setBackgroundResource(R.drawable.edittext_error);
             emailEditText.setText("");
             emailEditText.setHint(R.string.please_enter_valid_email);
+            ProgressBarHandler.hideProgressDialog(progressDialog);
         }
     }
 

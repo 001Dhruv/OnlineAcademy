@@ -55,7 +55,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
                                 android:text="Dhruv Patel"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:id="@+id/profile_name"/>
                      </LinearLayout>
 
                      <LinearLayout
@@ -77,7 +78,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
                                 android:text="dkparfnj@cvjn.xom"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:id="@+id/profile_email"/>
                      </LinearLayout>
 
                      <LinearLayout
@@ -90,14 +92,15 @@
                                 android:layout_width="24sp"
                                 android:layout_height="24sp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_phone" />
+                                android:src="@drawable/ic_phone"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
                                 android:text="1234567890"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:id="@+id/profile_contact"/>
                      </LinearLayout>
 
                      <LinearLayout
@@ -117,7 +120,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
                                 android:text="10th"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:id="@+id/profile_standard"/>
                      </LinearLayout>
 
                      <LinearLayout
@@ -130,15 +134,18 @@
                                 android:layout_width="24sp"
                                 android:layout_height="24sp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/logout" />
+                                android:src="@drawable/logout"
+                                android:id="@+id/profile_logout_btn"
+                                android:clickable="true"/>
 
                             <TextView
-                                android:id="@+id/logout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
                                 android:text="Log Out"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:id="@+id/profile_logout"
+                                android:clickable="true"/>
                      </LinearLayout>
               </LinearLayout>
 

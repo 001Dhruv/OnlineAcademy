@@ -2,6 +2,7 @@ package com.example.onlineacademy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,19 +21,19 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Start the main activity after the splash duration
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                if(preferences.getBoolean("isloggedin",false)){
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                boolean flag=preferences.getBoolean("isLoggedIn",false);
+                if(flag){
                     //To HOME Activity
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, Homeactivity.class);
                     startActivity(intent);
-                    finish();
                 }
                 else{
                     //To Login Page
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    finish();
                 }
+                finish();
             }
         }, 1500);
     }

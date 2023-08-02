@@ -2,6 +2,7 @@ package com.example.onlineacademy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText conformPasswordEditText;
     private Button signup;
     private TextView login;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProgressBarHandler.showProgressDialog(progressDialog,getString(R.string.creating_your_account));
                 validate();
                 signup();
             }
@@ -81,14 +83,17 @@ public class SignupActivity extends AppCompatActivity {
                     user userData=response.body().getUser();
                     userData.setToken(response.body().getToken());
                     SaveLogInData.saveLogInData(userData,getApplicationContext());
+                    ProgressBarHandler.hideProgressDialog(progressDialog);
                     Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
                     startActivity(intent);
                 } else {
+                    ProgressBarHandler.hideProgressDialog(progressDialog);
                     Toast.makeText(SignupActivity.this, R.string.unable_to_signup, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                ProgressBarHandler.hideProgressDialog(progressDialog);
                 Toast.makeText(SignupActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
                 Log.e("Api","onfaliure:"+t.getLocalizedMessage());
             }

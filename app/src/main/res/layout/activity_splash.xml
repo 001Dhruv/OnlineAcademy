@@ -8,22 +8,11 @@
     android:gravity="center"
     android:background="#FFFFFF"
     >
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="48sp"
-        android:outlineAmbientShadowColor="@color/primary_button"
-        app:cardBackgroundColor="@color/primary_button"
-        app:cardCornerRadius="4sp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:text="@string/onlineacademy"
-        android:textSize="28sp"
-        android:padding="8sp" />
-    </androidx.cardview.widget.CardView>
+
+ <ImageView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_margin="40sp"
+     android:src="@drawable/splash_img"/>
 
 </LinearLayout>

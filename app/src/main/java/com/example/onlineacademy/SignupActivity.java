@@ -7,14 +7,30 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.onlineacademy.Utils.ValidateHandlor;
+import com.example.onlineacademy.API.Instance;
+import com.example.onlineacademy.API.Models.LoginResponse;
+import com.example.onlineacademy.API.Models.user;
+import com.example.onlineacademy.Homeactivity.Homeactivity;
+import com.example.onlineacademy.Utils.*;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
     private CheckBox togglePasswordCheckBox;
@@ -35,7 +51,9 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 validate();
+                signup();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +71,31 @@ public class SignupActivity extends AppCompatActivity {
         });
 
     }
+
+    private void signup() {
+        Instance.getInstance().apiinterface.userRegistration(nameEditText.getText().toString(),emailEditText.getText().toString(),passwordEditText.getText().toString()).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+
+                    user userData=response.body().getUser();
+                    userData.setToken(response.body().getToken());
+                    SaveLogInData.saveLogInData(userData,getApplicationContext());
+                    Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SignupActivity.this, R.string.unable_to_signup, Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(SignupActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+                Log.e("Api","onfaliure:"+t.getLocalizedMessage());
+            }
+        });
+    }
+
+
     private void UIInit() {
         togglePasswordCheckBox=findViewById(R.id.togglePasswordCheckBoxSignup);
         nameEditText=findViewById(R.id.nameEditTextSignup);
@@ -91,20 +134,5 @@ public class SignupActivity extends AppCompatActivity {
             standardEditText.setText("");
             standardEditText.setHint(R.string.please_enter_valid_standard);
         }
-        else if(emailEditText.getText().toString().equals("dhruv@gmail.com")&&passwordEditText.getText().toString().equals("123")){
-            saveLoginStatus();
-//            Intent int=new Intent(getApplicationContext(),HomeActivity.class);
-//              startActivity(int);
-            finish();
-        }
     }
-    private void saveLoginStatus() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("isLoggedIn", true);
-        editor.putString("email",emailEditText.getText().toString());
-        editor.putString("name","Dhruv patel");//need to get name from database
-        editor.apply();
-    }
-
 }

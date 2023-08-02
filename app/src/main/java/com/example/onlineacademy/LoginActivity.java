@@ -2,6 +2,7 @@ package com.example.onlineacademy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import com.example.onlineacademy.API.Instance;
 import com.example.onlineacademy.API.Models.LoginResponse;
 import com.example.onlineacademy.API.Models.user;
 import com.example.onlineacademy.Homeactivity.Homeactivity;
-import com.example.onlineacademy.Utils.ValidateHandlor;
+import com.example.onlineacademy.Utils.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private TextView fogotpass;
     private API apiinterface;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                ProgressBarHandler.showProgressDialog(progressDialog,getString(R.string.logging_you_in));
                 validate();
                 signIn();
 
@@ -100,8 +104,11 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(responseBody);
 
                             if (jsonObject.has("user") && jsonObject.has("token")) {
-
-
+                                JSONObject userdata=jsonObject.getJSONObject("user");
+                                user userDetails=new user(userdata.getInt("id"),userdata.getString("name"),userdata.getString("email"),"", userdata.getString("created_at"), userdata.getString("updated_at"), userdata.getString("status"), jsonObject.getString("token"));
+                                LoginResponse loginRes=new LoginResponse(userDetails,jsonObject.getString("token"));
+                                SaveLogInData.saveLogInData(userDetails,getApplicationContext());
+                                ProgressBarHandler.hideProgressDialog(progressDialog);
                                 Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
                                 startActivity(intent);
                                 return;
@@ -112,16 +119,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         // The response is not a valid JSON, check if it contains the error message
                         if (responseBody.equals("Email Or Password Not Matches")) {
+                            ProgressBarHandler.hideProgressDialog(progressDialog);
                             Toast.makeText(LoginActivity.this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
+                    ProgressBarHandler.hideProgressDialog(progressDialog);
                     Toast.makeText(LoginActivity.this, R.string.unable_to_log_you_in, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                ProgressBarHandler.hideProgressDialog(progressDialog);
                 Toast.makeText(LoginActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
                 Log.e("Api","onfaliure:"+t.getLocalizedMessage());
             }
@@ -154,17 +164,6 @@ public class LoginActivity extends AppCompatActivity {
             emailEditText.setText("");
             emailEditText.setHint(R.string.please_enter_valid_email);
         }
-        else if(emailEditText.getText().toString().equals("dhruv@gmail.com")&&passwordEditText.getText().toString().equals("123")){
-            saveLoginStatus();
-            finish();
-        }
     }
-    private void saveLoginStatus() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("isLoggedIn", true);
-        editor.putString("email",emailEditText.getText().toString());
-        editor.putString("name","Dhruv patel");//need to get name from database
-        editor.apply();
-    }
+
 }

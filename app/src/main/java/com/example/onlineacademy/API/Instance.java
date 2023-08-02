@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Instance {
     public static Instance instance;
     public API apiinterface;
-    String url="https://brahminnerbrain.com/online_tuition_class/public/index.php/api/";
+    String url="";
     Instance()
 
     {

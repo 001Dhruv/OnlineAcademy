@@ -17,6 +17,7 @@ import com.example.onlineacademy.Homeactivity.Fragments.profile.Explore;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.Home;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.Live_Classes;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.profile;
+import com.example.onlineacademy.Homeactivity.Fragments.profile.video_player_fragment;
 import com.example.onlineacademy.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -61,9 +62,9 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
                 case R.id.navigation_explore:
-                loadFragment(new Explore());
+                loadFragment(new video_player_fragment());
                 return true;
-            case R.id.navigation_Live:
+                case R.id.navigation_Live:
                 loadFragment(new Live_Classes());
                 return true;
                 case R.id.navigation_Profile:

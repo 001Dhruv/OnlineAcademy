@@ -40,4 +40,6 @@
     <string name="unable_to_signup">Unable to SignUp</string>
     <string name="logging_you_in">Logging You In...</string>
     <string name="creating_your_account">Creating Your Account...</string>
+    <string name="live_classes">Live Classes</string>
+    <string name="explore">Explore</string>
 </resources>

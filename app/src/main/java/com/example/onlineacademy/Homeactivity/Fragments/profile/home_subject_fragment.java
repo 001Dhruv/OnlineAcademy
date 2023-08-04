@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.onlineacademy.Homeactivity.Adapters.home_fragment_recycler_adapter;
+import com.example.onlineacademy.Homeactivity.Adapters.home_subject_fragment_recycler_adapter;
 import com.example.onlineacademy.Homeactivity.Models.HomeFragmentModel;
 import com.example.onlineacademy.R;
-import com.example.onlineacademy.Homeactivity.Adapters.home_fragment_recycler_adapter;
-
 import java.util.ArrayList;
 
 
@@ -36,7 +36,7 @@ public class home_subject_fragment extends Fragment {
     private void recyclerViewSetter(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        home_fragment_recycler_adapter adapter = new home_fragment_recycler_adapter(getContext(), arr_home_subject_items, R.layout.fragment_home_subject_raw);
+        home_subject_fragment_recycler_adapter adapter = new home_subject_fragment_recycler_adapter(getContext(), arr_home_subject_items, R.layout.fragment_home_subject_raw);
         recyclerView.setAdapter(adapter);
 
         arr_home_subject_items.add(new HomeFragmentModel("Android Tut by Innerbrain","This course coverse the the entide tut of adroid for bigginers till advance","https://i.ytimg.com/vi/FEqF1_jDV-A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB2vyiSPCPrintn0roLbV0T6O-cTA"));

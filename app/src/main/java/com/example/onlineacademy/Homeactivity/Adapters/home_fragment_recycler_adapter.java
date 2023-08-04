@@ -44,6 +44,13 @@ public class home_fragment_recycler_adapter extends RecyclerView.Adapter<home_fr
         holder.desc.setText(arrlist.get(position).desc);
         holder.prog.setText(arrlist.get(position).prog);
         holder.title.setText(arrlist.get(position).title);
+        holder.desc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Call the method which passes intent to the perticular subject playlist. pass the link of that playlist as parameter to the method.
+                //Do the same thing for image,prog and title.
+            }
+        });
         System.out.println("TextView binded...");
         System.out.println("Binding complete..");
     }
@@ -58,8 +65,6 @@ public class home_fragment_recycler_adapter extends RecyclerView.Adapter<home_fr
         TextView desc;
         TextView prog;
         ImageView img;
-
-
         public ViewHolder(@NonNull View view) {
             super(view);
             title=view.findViewById(R.id.home_recycler_title);

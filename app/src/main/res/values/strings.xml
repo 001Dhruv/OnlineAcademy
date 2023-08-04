@@ -42,4 +42,7 @@
     <string name="creating_your_account">Creating Your Account...</string>
     <string name="live_classes">Live Classes</string>
     <string name="explore">Explore</string>
+    <string name="description">Description</string>
+    <string name="course_name">Course Name</string>
+    <string name="buy_now">Buy Now</string>
 </resources>

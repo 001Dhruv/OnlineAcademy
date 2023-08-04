@@ -19,6 +19,4 @@ public class HomeFragmentModel {
         this.prog = prog;
         this.img=img;
     }
-
-
 }

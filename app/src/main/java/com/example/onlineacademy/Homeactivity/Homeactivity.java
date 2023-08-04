@@ -62,7 +62,7 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
                 case R.id.navigation_explore:
-                loadFragment(new video_player_fragment());
+                loadFragment(new Explore());
                 return true;
                 case R.id.navigation_Live:
                 loadFragment(new Live_Classes());

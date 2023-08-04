@@ -16,11 +16,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<explore_fragment_recycler_adapter.ViewHolder>{
+public class live_fragment_recycler_adapter extends RecyclerView.Adapter<live_fragment_recycler_adapter.ViewHolder>{
     Context context;
     ArrayList<HomeFragmentModel> arrlist;
     int raw_id;
-    public explore_fragment_recycler_adapter(Context context, ArrayList<HomeFragmentModel> arrlist, int raw_id){
+    public live_fragment_recycler_adapter(Context context, ArrayList<HomeFragmentModel> arrlist, int raw_id){
         this.context=context;
         this.arrlist=arrlist;
         this.raw_id=raw_id;
@@ -43,11 +43,12 @@ public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<expl
         Picasso.get().load(imageUrl).into(holder.img);
         holder.desc.setText(arrlist.get(position).desc);
         holder.title.setText(arrlist.get(position).title);
-        holder.desc.setOnClickListener(new View.OnClickListener() {
+        holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Call the method which passes intent to the perticular subject description. pass the link of that playlist as parameter to the method.
-                //Do the same thing for image,desc and title.
+                //Call the method which passes intent to the video player. pass the link of that video as parameter to the method.
+                //Do the same thing for image,prog and title.
+//                this will work for live classes too
             }
         });
         System.out.println("TextView binded...");
@@ -63,11 +64,13 @@ public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<expl
         TextView title;
         TextView desc;
         ImageView img;
+
+
         public ViewHolder(@NonNull View view) {
             super(view);
-            title=view.findViewById(R.id.explore_recycler_title);
-            desc=view.findViewById(R.id.explore_recycler_description);
-            img=view.findViewById(R.id.explore_recycler_img);
+            title=view.findViewById(R.id.live_classes_recycler_title);
+            desc=view.findViewById(R.id.live_classes_recycler_description);
+            img=view.findViewById(R.id.live_classes_fragment_recycler_img);
         }
     }
 }

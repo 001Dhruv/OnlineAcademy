@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.onlineacademy.API.Models.HomeActivityInstance;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.Explore;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.Home;
 import com.example.onlineacademy.Homeactivity.Fragments.profile.Live_Classes;
@@ -35,6 +36,7 @@ public class Homeactivity extends AppCompatActivity implements BottomNavigationV
         UIInit();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.onlineacademy);
+        HomeActivityInstance.setHomeActivity(this);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 

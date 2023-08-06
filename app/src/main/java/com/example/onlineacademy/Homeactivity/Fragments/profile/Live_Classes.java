@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.onlineacademy.Homeactivity.Adapters.HomeFragmentModel;
 import com.example.onlineacademy.Homeactivity.Adapters.live_fragment_recycler_adapter;
 
-import com.example.onlineacademy.Homeactivity.Models.HomeFragmentModel;
 import com.example.onlineacademy.R;
 
 import java.util.ArrayList;

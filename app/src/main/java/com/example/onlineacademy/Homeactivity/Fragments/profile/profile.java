@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.example.onlineacademy.LoginActivity;
 import com.example.onlineacademy.R;
 import com.example.onlineacademy.SignupActivity;
 import com.example.onlineacademy.Utils.SaveLogInData;
+import com.example.onlineacademy.API.Models.*;
 
 import org.w3c.dom.Text;
 
@@ -57,9 +59,8 @@ public class profile extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), SignupActivity.class);
-//                getActivity().startActivity(intent);
-//                getActivity().finish();
+                Homeactivity homeActivity = HomeActivityInstance.getHomeActivity();
+                homeActivity.loadFragment(new fragment_edit_profile());
             }
         });
 

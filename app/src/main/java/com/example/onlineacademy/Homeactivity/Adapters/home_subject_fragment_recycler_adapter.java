@@ -10,22 +10,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlineacademy.Homeactivity.Models.HomeFragmentModel;
+import com.example.onlineacademy.API.Models.SubjectData;
 import com.example.onlineacademy.R;
+import com.example.onlineacademy.Utils.ClickHandler;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class home_subject_fragment_recycler_adapter extends RecyclerView.Adapter<home_subject_fragment_recycler_adapter.ViewHolder>{
     Context context;
-    ArrayList<HomeFragmentModel> arrlist;
+    List<SubjectData> arrlist;
     int raw_id;
-    public home_subject_fragment_recycler_adapter(Context context, ArrayList<HomeFragmentModel> arrlist, int raw_id){
+    public home_subject_fragment_recycler_adapter(Context context, List<SubjectData> arrlist, int raw_id){
         this.context=context;
         this.arrlist=arrlist;
         this.raw_id=raw_id;
         System.out.println("Adapter Constructor called...");
-
     }
     @NonNull
     @Override
@@ -39,20 +40,33 @@ public class home_subject_fragment_recycler_adapter extends RecyclerView.Adapter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String imageUrl = arrlist.get(position).img;
+        String imageUrl = "https://static.vecteezy.com/system/resources/previews/009/447/764/original/summer-background-of-beach-vacation-holiday-theme-with-sand-wave-layer-top-view-paper-cut-tropical-summer-design-palm-leaves-surfboard-sunglass-beach-ball-cloud-on-yellow-sky-background-vector.jpg";
         Picasso.get().load(imageUrl).into(holder.img);
-        holder.desc.setText(arrlist.get(position).desc);
-        holder.title.setText(arrlist.get(position).title);
+        holder.desc.setText(arrlist.get(position).getYoutube_video_title());
+        holder.title.setText(arrlist.get(position).getSubject_name()+"/"+arrlist.get(position).getTopic_name());
+        clickSetter(holder,position);
+        System.out.println("TextView binded...");
+        System.out.println("Binding complete..");
+    }
+
+    private void clickSetter(ViewHolder holder, int position) {
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Call the method which passes intent to the video player. pass the link of that video as parameter to the method.
-                //Do the same thing for image,prog and title.
-//                this will work for live classes too
+                ClickHandler.HomeVideoPlayer(arrlist.get(position).getYoutube_video_url());
+            }
+        });holder.desc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClickHandler.HomeVideoPlayer(arrlist.get(position).getYoutube_video_url());
+            }
+        });holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClickHandler.HomeVideoPlayer(arrlist.get(position).getYoutube_video_url());
             }
         });
-        System.out.println("TextView binded...");
-        System.out.println("Binding complete..");
+
     }
 
     @Override

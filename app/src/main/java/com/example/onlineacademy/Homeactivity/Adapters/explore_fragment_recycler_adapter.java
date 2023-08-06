@@ -10,17 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlineacademy.Homeactivity.Models.HomeFragmentModel;
+import com.example.onlineacademy.API.Models.ExploreResponse;
+import com.example.onlineacademy.Homeactivity.Fragments.profile.Explore;
 import com.example.onlineacademy.R;
+import com.example.onlineacademy.Utils.ClickHandler;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<explore_fragment_recycler_adapter.ViewHolder>{
     Context context;
-    ArrayList<HomeFragmentModel> arrlist;
+    List<ExploreResponse> arrlist;
     int raw_id;
-    public explore_fragment_recycler_adapter(Context context, ArrayList<HomeFragmentModel> arrlist, int raw_id){
+    public explore_fragment_recycler_adapter(Context context, List<ExploreResponse> arrlist, int raw_id){
         this.context=context;
         this.arrlist=arrlist;
         this.raw_id=raw_id;
@@ -39,19 +42,31 @@ public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<expl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String imageUrl = arrlist.get(position).img;
+        String imageUrl = arrlist.get(position).getCourse_image();
         Picasso.get().load(imageUrl).into(holder.img);
-        holder.desc.setText(arrlist.get(position).desc);
-        holder.title.setText(arrlist.get(position).title);
-        holder.desc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Call the method which passes intent to the perticular subject description. pass the link of that playlist as parameter to the method.
-                //Do the same thing for image,desc and title.
-            }
-        });
+        holder.desc.setText(arrlist.get(position).getCourse_description());
+        holder.title.setText(arrlist.get(position).getCourse_name()+" by "+arrlist.get(position).getCourse_teacher_name());
+        clickSetter(holder,position);
         System.out.println("TextView binded...");
         System.out.println("Binding complete..");
+    }
+    private void clickSetter(explore_fragment_recycler_adapter.ViewHolder holder, int position) {
+            holder.desc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClickHandler.ExploreRecyclerClick(arrlist.get(position));
+                }
+            });holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClickHandler.ExploreRecyclerClick(arrlist.get(position));
+                }
+            });holder.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClickHandler.ExploreRecyclerClick(arrlist.get(position));
+                }
+            });
     }
 
     @Override

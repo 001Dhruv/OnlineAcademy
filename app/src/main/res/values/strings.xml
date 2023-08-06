@@ -45,4 +45,13 @@
     <string name="description">Description</string>
     <string name="course_name">Course Name</string>
     <string name="buy_now">Buy Now</string>
+    <string name="logging_you_out">Logging You Out...</string>
+    <string name="logout_successful">Logout Successful</string>
+    <string name="unable_to_log_you_out">Unable to Log You Out</string>
+    <string name="edit_your_profile">Edit Your Profile</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="applying_changes">Applying Changes...</string>
+    <string name="changes_applied_successfully">Changes Applied Successfully...</string>
+    <string name="error_updating_data">Error Updating Data...</string>
+    <string name="loading">Loading...</string>
 </resources>

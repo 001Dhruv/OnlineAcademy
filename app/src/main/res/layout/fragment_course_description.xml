@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment_course_description"
+    tools:context=".Homeactivity.Fragments.profile.fragment_course_description"
     android:padding="8dp">
     <ScrollView
         android:layout_width="match_parent"
@@ -70,8 +70,7 @@
                 android:elevation="20dp"
                 android:padding="20dp"
                 app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="10dp"
-                android:layout_margin="8dp">
+                app:cardCornerRadius="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -101,7 +100,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Here Goes DescriptionHere "
-                            android:id="@+id/inro_description"
+                            android:id="@+id/intro_description"
                             android:maxHeight="70sp"/>
                     </LinearLayout>
                 </LinearLayout>

@@ -22,16 +22,20 @@ public interface API {
     @POST("login")
     Call<ResponseBody> userLogin(@Query("email")String email, @Query("password") String password);
     @POST("registration")
-    Call<LoginResponse> userRegistration(@Query("name")String name, @Query("email")String email, @Query("password")String password);
+    Call<LoginResponse> userRegistration(@Query("name")String name, @Query("email")String email, @Query("password")String password,@Query("standard") String standard,@Query("contact") String contact);
     @POST("logout")
     Call<LogoutResponse> userLogout(@Query("tokenpass") String tokenpass);
 //    @POST("EditProfile")
 //    Call<LogoinResponse> userLogout(@Query("tokenpass") String tokenpass);
     @GET("coursegetdata")
     Call<List<HomeResponse>> getHomeData();
+
+    //Change url for explore
     @GET("coursegetdata")
     Call<List<ExploreResponse>> getExploreData();
     @POST("idcourseid")
     Call<List<SubjectData>> getSubjectData(@Query("course_id") int course_id);
+    @GET("livedataget")
+    Call<List<LiveResponse>> getLiveData();
 
 }

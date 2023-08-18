@@ -53,6 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog(SignupActivity.this);
                 ProgressBarHandler.showProgressDialog(progressDialog,getString(R.string.creating_your_account));
                 validate();
                 signup();
@@ -75,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
-        Instance.getInstance().apiinterface.userRegistration(nameEditText.getText().toString(),emailEditText.getText().toString(),passwordEditText.getText().toString()).enqueue(new Callback<LoginResponse>() {
+        Instance.getInstance().apiinterface.userRegistration(nameEditText.getText().toString(),emailEditText.getText().toString(),passwordEditText.getText().toString(),standardEditText.getText().toString(),contactEditText.getText().toString()).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {

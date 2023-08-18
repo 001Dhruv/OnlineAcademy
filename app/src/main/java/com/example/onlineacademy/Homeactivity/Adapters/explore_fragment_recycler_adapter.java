@@ -42,10 +42,10 @@ public class explore_fragment_recycler_adapter extends RecyclerView.Adapter<expl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String imageUrl = arrlist.get(position).getCourse_image();
+        String imageUrl = "https://brahminnerbrain.com/online_tuition_class/storage/app/"+arrlist.get(position).getCourse_image();
         Picasso.get().load(imageUrl).into(holder.img);
         holder.desc.setText(arrlist.get(position).getCourse_description());
-        holder.title.setText(arrlist.get(position).getCourse_name()+" by "+arrlist.get(position).getCourse_teacher_name());
+        holder.title.setText(arrlist.get(position).getCourse_name().toUpperCase()+" by "+arrlist.get(position).getCourse_teacher_name());
         clickSetter(holder,position);
         System.out.println("TextView binded...");
         System.out.println("Binding complete..");

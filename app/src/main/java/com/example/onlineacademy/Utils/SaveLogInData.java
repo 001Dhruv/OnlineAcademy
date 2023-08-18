@@ -41,6 +41,8 @@ public class SaveLogInData {
         editor.putString("created_at",loginres.getCreated_at());
         editor.putString("updated_at",loginres.getUpdated_at());
         editor.putString("status",loginres.getStatus());
+        editor.putInt("contact",loginres.getContact());
+        editor.putInt("standard",loginres.getStandard());
         editor.putInt("id",loginres.getId());
         editor.apply();
     }
@@ -63,6 +65,8 @@ public class SaveLogInData {
         editor.remove("updated_at");
         editor.remove("status");
         editor.remove("id");
+        editor.remove("contact");
+        editor.remove("standard");
         editor.apply();
         editor.commit();
     }
@@ -72,7 +76,6 @@ public class SaveLogInData {
             @Override
             public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
                 if (response.isSuccessful()) {
-
                     ProgressBarHandler.hideProgressDialog(progressDialog);
                     removeLoginData(preferences);
                     Toast.makeText(view.getContext(), R.string.logout_successful, Toast.LENGTH_SHORT).show();

@@ -10,5 +10,4 @@ public class HomeFragmentModel {
         this.desc = desc;
         this.title = title;
     }
-
 }

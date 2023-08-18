@@ -6,9 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Instance {
     public static Instance instance;
     public API apiinterface;
-    String url="";
+    public static String url="https://brahminnerbrain.com/online_tuition_class/public/index.php/api/";
     Instance()
-
     {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(url).
                 addConverterFactory(GsonConverterFactory.create()).build();

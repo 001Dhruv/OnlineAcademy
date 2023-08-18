@@ -9,8 +9,10 @@ public class user {
     String updated_at;
     String status;
     String token;
+    int contact;
+    int standard;
 
-    public user(int id, String name, String email, String email_varified_at, String created_at, String updated_at, String status, String token) {
+    public user(int id, String name, String email, String email_varified_at, String created_at, String updated_at, String status, String token,int standard,int contact) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -19,6 +21,8 @@ public class user {
         this.updated_at = updated_at;
         this.status = status;
         this.token = token;
+        this.standard=standard;
+        this.contact=contact;
     }
 
     public int getId() {
@@ -85,6 +89,20 @@ public class user {
         this.token = token;
     }
 
+    public int getContact() {
+        return contact;
+    }
 
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+
+    public int getStandard() {
+        return standard;
+    }
+
+    public void setStandard(int standard) {
+        this.standard = standard;
+    }
 }
 

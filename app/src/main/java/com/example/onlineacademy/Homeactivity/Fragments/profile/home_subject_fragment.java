@@ -53,7 +53,7 @@ public class home_subject_fragment extends Fragment {
     }
 
     private void subjectNameSetter() {
-        subject_name.setText(homeResponse.getCourse_name());
+        subject_name.setText(homeResponse.getCourse_name().toUpperCase());
     }
 
     private static void getDataForHome(View view) {

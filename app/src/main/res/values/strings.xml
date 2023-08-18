@@ -54,4 +54,5 @@
     <string name="changes_applied_successfully">Changes Applied Successfully...</string>
     <string name="error_updating_data">Error Updating Data...</string>
     <string name="loading">Loading...</string>
+    <string name="contact_your_admin">Contact Your Admin</string>
 </resources>

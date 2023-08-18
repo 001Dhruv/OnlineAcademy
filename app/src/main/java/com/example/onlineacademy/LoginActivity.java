@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(LoginActivity.this);
                 ProgressBarHandler.showProgressDialog(progressDialog,getString(R.string.logging_you_in));
                 validate();
+                Log.e("login","validation complete");
                 signIn();
 
             }
@@ -92,9 +93,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    Log.e("login","response got");
+
                     String responseBody = null;
                     try {
                         responseBody = response.body().string();
+                        Log.e("login","converted to string");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -105,8 +109,14 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (jsonObject.has("user") && jsonObject.has("token")) {
                                 JSONObject userdata=jsonObject.getJSONObject("user");
-                                user userDetails=new user(userdata.getInt("id"),userdata.getString("name"),userdata.getString("email"),"", userdata.getString("created_at"), userdata.getString("updated_at"), userdata.getString("status"), jsonObject.getString("token"));
+                                if(userdata.has("standard")){
+                                    Log.e("login","json object have staandard");
+                                }
+
+                                user userDetails=new user(userdata.getInt("id"),userdata.getString("name"),userdata.getString("email"),"", userdata.getString("created_at"), userdata.getString("updated_at"), userdata.getString("status"), jsonObject.getString("token"),userdata.getInt("standard"),userdata.getInt("contact"));
                                 LoginResponse loginRes=new LoginResponse(userDetails,jsonObject.getString("token"));
+                                Log.e("login","data set in object");
+
                                 SaveLogInData.saveLogInData(userDetails,getApplicationContext());
                                 ProgressBarHandler.hideProgressDialog(progressDialog);
                                 Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
@@ -124,13 +134,18 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else {
+                    Log.e("login","response  not got");
+
                     ProgressBarHandler.hideProgressDialog(progressDialog);
+
                     Toast.makeText(LoginActivity.this, R.string.unable_to_log_you_in, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("login","faliuer in getting data");
+
                 ProgressBarHandler.hideProgressDialog(progressDialog);
                 Toast.makeText(LoginActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
                 Log.e("Api","onfaliure:"+t.getLocalizedMessage());

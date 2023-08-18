@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.onlineacademy.Homeactivity.Homeactivity;
 import com.example.onlineacademy.LoginActivity;
@@ -59,8 +60,9 @@ public class profile extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Homeactivity homeActivity = HomeActivityInstance.getHomeActivity();
-                homeActivity.loadFragment(new fragment_edit_profile());
+                Toast.makeText(view.getContext(), R.string.contact_your_admin, Toast.LENGTH_SHORT).show();
+//                Homeactivity homeActivity = HomeActivityInstance.getHomeActivity();
+//                homeActivity.loadFragment(new fragment_edit_profile());
             }
         });
 
@@ -78,6 +80,8 @@ public class profile extends Fragment {
         SharedPreferences preferences =view.getContext().getSharedPreferences("loginPrefs",view.getContext().MODE_PRIVATE);
         profile_name.setText(preferences.getString("name",""));
         profile_email.setText(preferences.getString("email",""));
+        profile_contact.setText(Integer.toString(preferences.getInt("contact",0)));
+        profile_standard.setText(Integer.toString(preferences.getInt("standard",0)));
     }
 
     private void UIInit(View view) {
@@ -87,6 +91,7 @@ public class profile extends Fragment {
         profile_email=view.findViewById(R.id.profile_email);
         profile_contact=view.findViewById(R.id.profile_contact);
         profile_logout_btn=view.findViewById(R.id.profile_logout_btn);
+        profile_standard=view.findViewById(R.id.profile_standard);
     }
 
 }

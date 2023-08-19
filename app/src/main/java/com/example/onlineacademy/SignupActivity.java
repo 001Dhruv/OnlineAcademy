@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 import com.example.onlineacademy.API.Instance;
 import com.example.onlineacademy.API.Models.LoginResponse;
+import com.example.onlineacademy.API.Models.SignupResponse;
 import com.example.onlineacademy.API.Models.user;
+import com.example.onlineacademy.API.Models.userSignup;
 import com.example.onlineacademy.Homeactivity.Homeactivity;
 import com.example.onlineacademy.Utils.*;
 
@@ -76,14 +78,14 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
-        Instance.getInstance().apiinterface.userRegistration(nameEditText.getText().toString(),emailEditText.getText().toString(),passwordEditText.getText().toString(),standardEditText.getText().toString(),contactEditText.getText().toString()).enqueue(new Callback<LoginResponse>() {
+        Instance.getInstance().apiinterface.userRegistration(nameEditText.getText().toString(),emailEditText.getText().toString(),passwordEditText.getText().toString(),standardEditText.getText().toString(),contactEditText.getText().toString()).enqueue(new Callback<SignupResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
                 if (response.isSuccessful()) {
 
-                    user userData=response.body().getUser();
+                    userSignup userData=response.body().getUser();
                     userData.setToken(response.body().getToken());
-                    SaveLogInData.saveLogInData(userData,getApplicationContext());
+                    SaveLogInData.saveSignUpData(userData,getApplicationContext());
                     ProgressBarHandler.hideProgressDialog(progressDialog);
                     Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
                     startActivity(intent);
@@ -93,7 +95,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
                 ProgressBarHandler.hideProgressDialog(progressDialog);
                 Toast.makeText(SignupActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
                 Log.e("Api","onfaliure:"+t.getLocalizedMessage());

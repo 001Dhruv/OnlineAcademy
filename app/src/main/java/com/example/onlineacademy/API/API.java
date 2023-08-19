@@ -6,6 +6,7 @@ import com.example.onlineacademy.API.Models.ExploreResponse;
 import com.example.onlineacademy.API.Models.HomeResponse;
 import com.example.onlineacademy.API.Models.LoginResponse;
 import com.example.onlineacademy.API.Models.LogoutResponse;
+import com.example.onlineacademy.API.Models.SignupResponse;
 import com.example.onlineacademy.API.Models.SubjectData;
 import com.example.onlineacademy.API.Models.user;
 
@@ -22,7 +23,7 @@ public interface API {
     @POST("login")
     Call<ResponseBody> userLogin(@Query("email")String email, @Query("password") String password);
     @POST("registration")
-    Call<LoginResponse> userRegistration(@Query("name")String name, @Query("email")String email, @Query("password")String password,@Query("standard") String standard,@Query("contact") String contact);
+    Call<SignupResponse> userRegistration(@Query("name")String name, @Query("email")String email, @Query("password")String password, @Query("standard") String standard, @Query("contact") String contact);
     @POST("logout")
     Call<LogoutResponse> userLogout(@Query("tokenpass") String tokenpass);
 //    @POST("EditProfile")

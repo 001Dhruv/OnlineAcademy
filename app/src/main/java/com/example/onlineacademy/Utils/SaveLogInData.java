@@ -13,6 +13,7 @@ import com.example.onlineacademy.API.Instance;
 import com.example.onlineacademy.API.Models.LoginResponse;
 import com.example.onlineacademy.API.Models.LogoutResponse;
 import com.example.onlineacademy.API.Models.user;
+import com.example.onlineacademy.API.Models.userSignup;
 import com.example.onlineacademy.Homeactivity.Homeactivity;
 import com.example.onlineacademy.LoginActivity;
 import com.example.onlineacademy.R;
@@ -41,6 +42,20 @@ public class SaveLogInData {
         editor.putString("created_at",loginres.getCreated_at());
         editor.putString("updated_at",loginres.getUpdated_at());
         editor.putString("status",loginres.getStatus());
+        editor.putInt("contact",loginres.getContact());
+        editor.putInt("standard",loginres.getStandard());
+        editor.putInt("id",loginres.getId());
+        editor.apply();
+    }
+    public static void saveSignUpData(userSignup loginres, Context context){
+        SharedPreferences preferences = context.getSharedPreferences("loginPrefs",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.putString("email",loginres.getEmail());
+        editor.putString("token",loginres.getToken());
+        editor.putString("name",loginres.getName());
+        editor.putString("created_at",loginres.getCreated_at());
+        editor.putString("updated_at",loginres.getUpdated_at());
         editor.putInt("contact",loginres.getContact());
         editor.putInt("standard",loginres.getStandard());
         editor.putInt("id",loginres.getId());
